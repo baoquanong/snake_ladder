@@ -136,19 +136,34 @@ const drawNum = () => {
 const snakes = [
   [17, 7],
   [54, 34],
+  [60, 55],
   [62, 19],
-  [55, 60],
   [87, 36],
   [93, 76],
   [94, 73],
   [98, 79],
 ];
 
-
-for (let i = 0; i < 10; i++){
-  console.log (1)
+for (let i = 0; i < snakes.length; i++) {
+  let diff = snakes[i][0] - snakes[i][1];
+  snakes[i].push(diff);
 }
+console.log(snakes);
 
+const fromSnake = snakes.map((element) => {
+  return element[0];
+});
+console.log(fromSnake);
+
+const toSnake = snakes.map((element) => {
+  return element[1];
+});
+console.log(toSnake);
+
+const diffSnake = snakes.map((element) => {
+  return element[2] * -1;
+});
+console.log(diffSnake);
 
 const ladders = [
   [4, 14],
@@ -158,7 +173,7 @@ const ladders = [
   [28, 84],
   [51, 67],
   [72, 91],
-  [80, 99],
+  [78, 80],
 ];
 
 const draw1Snake = (startX, startY, endX, endY) => {
@@ -206,7 +221,8 @@ const player1RollArray = [];
 const player1Roll = (num) => {
   player1RollArray.push(num);
   console.log(player1RollArray);
-  // array -> reduce array
+
+  // array -> reduce array - calculate player position
   const player1Position = player1RollArray.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
@@ -219,23 +235,46 @@ const player1Roll = (num) => {
   );
   console.log("player 2 current index", player2Position);
 
-  //
-  //
-  //
-  // if player hits any of the snake or ladder -
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  if (
+    player1Position === 17 ||
+    player1Position === 54 ||
+    player1Position === 60 ||
+    player1Position === 62 ||
+    player1Position === 87 ||
+    player1Position === 93 ||
+    player1Position === 94 ||
+    player1Position === 98
+  ) {
+    let addDiffSnake = diffSnake[fromSnake.indexOf(player1Position)];
+    player1RollArray.push(addDiffSnake);
+
+    // player1Position = player1RollArray.reduce(
+    //   (previousValue, currentValue) => previousValue + currentValue,
+    //   0
+    // );
+    // console.log("player 1 NEW current index", player1Position);
+  }
+
+  // if ((player2Position === 17 || 54 || 60 || 62 || 87 || 93 || 94 || 98)) {
+  //   let addDiffSnake = diffSnake[fromSnake.indexOf(player2Position)];
+  //   player2RollArray.push(addDiffSnake);
+  //   player2Position = player2RollArray.reduce(
+  //     (previousValue, currentValue) => previousValue + currentValue,
+  //     0
+  //   );
+  //   console.log("player 2 NEW current index", player2Position);
+  // }
+
+  //}
+  //  hits any of the snake or ladder -
   // then push the difference into the array
-  //
-  //
-  //
-  //
-  //
   //
   //
   //before drawing check the win condition first
   if (player1Position >= 99) {
     showEndA();
-  } else if (player2Position >= 99) {
-    showEndB();
   }
   drawPlayer1(player1Position);
   drawPlayer2(player2Position);
@@ -258,9 +297,30 @@ const player2Roll = (num) => {
   );
   console.log("player 2 current index", player2Position);
   //before drawing get the win condition first
-  if (player1Position >= 99) {
-    showEndA();
-  } else if (player2Position >= 99) {
+  //
+  //
+  if (
+    player2Position === 17 ||
+    player2Position === 54 ||
+    player2Position === 60 ||
+    player2Position === 62 ||
+    player2Position === 87 ||
+    player2Position === 93 ||
+    player2Position === 94 ||
+    player2Position === 98
+  ) {
+    let addDiffSnake = diffSnake[fromSnake.indexOf(player2Position)];
+    player2RollArray.push(addDiffSnake);
+  }
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  if (player2Position >= 99) {
     showEndB();
   }
   drawPlayer1(player1Position);
@@ -322,7 +382,7 @@ const main = () => {
   drawNum();
   //= draw snakes and ladders
   drawAllSnakes();
-  drawAllLadders();
+  //drawAllLadders();
 
   //= draw players initial position
   drawPlayer1(0);
@@ -339,7 +399,7 @@ const main = () => {
     drawRect2();
     drawNum();
     drawAllSnakes();
-    drawAllLadders();
+    //drawAllLadders();
 
     //= run players and draw players
     if (counter % 2 === 1) {
