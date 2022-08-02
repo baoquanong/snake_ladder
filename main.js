@@ -1,14 +1,12 @@
 import $ from "jquery";
 
-//= showing pages
+//= showing pages ========================================
 const showStart = () => {
   $("#startPage").show();
   $("#boardPage").hide();
   $("#endPageA").hide();
   $("#endPageB").hide();
   $("#die").hide();
-  //player1RollArray.length = 0; // weird glitch
-  //player2RollArray.length = 0; // weird glitch
 };
 
 const showBoard = () => {
@@ -72,7 +70,7 @@ const drawRect2 = () => {
   }
 };
 
-//= make array of box positions
+//= make array of box positions ============================
 // create empty array
 const arrPos = [];
 
@@ -120,7 +118,7 @@ for (let i = 0; i < 10; i++) {
 //* array of boxes
 console.log(arrPos);
 
-//= draw number in each box
+//= draw number in each box ===================================
 const drawNum = () => {
   ctx.font = "12px Arial";
   ctx.fillStyle = "#4D413A";
@@ -132,7 +130,7 @@ const drawNum = () => {
   }
 };
 
-//= draw snakes and ladders
+//= draw snakes and ladders ==================================
 const snakes = [
   [17, 7],
   [54, 34],
@@ -166,15 +164,36 @@ const diffSnake = snakes.map((element) => {
 console.log(diffSnake);
 
 const ladders = [
+  [2, 38],
   [4, 14],
   [9, 31],
-  [2, 38],
   [21, 42],
   [28, 84],
   [51, 67],
   [72, 91],
   [78, 80],
 ];
+
+for (let i = 0; i < ladders.length; i++) {
+  let diff = ladders[i][0] - ladders[i][1];
+  ladders[i].push(diff);
+}
+console.log(ladders);
+
+const fromLadder = ladders.map((element) => {
+  return element[0];
+});
+console.log(fromLadder);
+
+const toLadder = ladders.map((element) => {
+  return element[1];
+});
+console.log(toLadder);
+
+const diffLadder = ladders.map((element) => {
+  return element[2] * -1;
+});
+console.log(diffLadder);
 
 const draw1Snake = (startX, startY, endX, endY) => {
   ctx.beginPath();
@@ -216,26 +235,29 @@ const drawAllLadders = () => {
   }
 };
 
-//= players mechanics
+//= player1 mechanics ===========================================
 const player1RollArray = [];
 const player1Roll = (num) => {
   player1RollArray.push(num);
   console.log(player1RollArray);
 
   // array -> reduce array - calculate player position
-  const player1Position = player1RollArray.reduce(
+  let player1Position = player1RollArray.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
   );
   console.log("player 1 current index", player1Position);
   // need to calculate both players positions
-  const player2Position = player2RollArray.reduce(
+  let player2Position = player2RollArray.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
   );
   console.log("player 2 current index", player2Position);
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
+  //! animation of frames
+  // for  (let i = player1Position - num ; i <= player1Position; i++){
+  //   drawPlayer1(player1Position)
+  // }
 
   if (
     player1Position === 17 ||
@@ -250,28 +272,31 @@ const player1Roll = (num) => {
     let addDiffSnake = diffSnake[fromSnake.indexOf(player1Position)];
     player1RollArray.push(addDiffSnake);
 
-    // player1Position = player1RollArray.reduce(
-    //   (previousValue, currentValue) => previousValue + currentValue,
-    //   0
-    // );
-    // console.log("player 1 NEW current index", player1Position);
+    player1Position = player1RollArray.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    );
+    console.log("player 1 NEW current index", player1Position);
+  } else if (
+    player1Position === 2 ||
+    player1Position === 4 ||
+    player1Position === 9 ||
+    player1Position === 21 ||
+    player1Position === 28 ||
+    player1Position === 51 ||
+    player1Position === 72 ||
+    player1Position === 78
+  ) {
+    let addDiffladder = diffLadder[fromLadder.indexOf(player1Position)];
+    player1RollArray.push(addDiffladder);
+    // replace player position
+    player1Position = player1RollArray.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    );
+    console.log("player 1 NEW current index", player1Position);
   }
 
-  // if ((player2Position === 17 || 54 || 60 || 62 || 87 || 93 || 94 || 98)) {
-  //   let addDiffSnake = diffSnake[fromSnake.indexOf(player2Position)];
-  //   player2RollArray.push(addDiffSnake);
-  //   player2Position = player2RollArray.reduce(
-  //     (previousValue, currentValue) => previousValue + currentValue,
-  //     0
-  //   );
-  //   console.log("player 2 NEW current index", player2Position);
-  // }
-
-  //}
-  //  hits any of the snake or ladder -
-  // then push the difference into the array
-  //
-  //
   //before drawing check the win condition first
   if (player1Position >= 99) {
     showEndA();
@@ -280,18 +305,19 @@ const player1Roll = (num) => {
   drawPlayer2(player2Position);
 };
 
+//= player2 mechanics ===========================================
 const player2RollArray = [];
 const player2Roll = (num) => {
   player2RollArray.push(num);
   console.log(player2RollArray);
   // array -> reduce array
-  const player1Position = player1RollArray.reduce(
+  let player1Position = player1RollArray.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
   );
   console.log("player 1 current index", player1Position);
   // need to calculate both players positions
-  const player2Position = player2RollArray.reduce(
+  let player2Position = player2RollArray.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     0
   );
@@ -311,14 +337,28 @@ const player2Roll = (num) => {
   ) {
     let addDiffSnake = diffSnake[fromSnake.indexOf(player2Position)];
     player2RollArray.push(addDiffSnake);
+
+    player2Position = player2RollArray.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    );
+  } else if (
+    player2Position === 2 ||
+    player2Position === 4 ||
+    player2Position === 9 ||
+    player2Position === 21 ||
+    player2Position === 28 ||
+    player2Position === 51 ||
+    player2Position === 72 ||
+    player2Position === 78
+  ) {
+    let addDiffladder = diffLadder[fromLadder.indexOf(player2Position)];
+    player2RollArray.push(addDiffladder);
+    player2Position = player2RollArray.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    );
   }
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 
   if (player2Position >= 99) {
     showEndB();
@@ -327,7 +367,7 @@ const player2Roll = (num) => {
   drawPlayer2(player2Position);
 };
 
-//= draw players 1 and 2
+//= draw players 1 and 2 ===================================
 const drawPlayer1 = (num) => {
   let i = num;
   ctx.beginPath();
@@ -354,7 +394,7 @@ const drawPlayer2 = (num) => {
   ctx.fillText("B", arrPos[i].x, arrPos[i].y);
 };
 
-//= take turns using counter
+//= take turns using counter ================================
 let counter = 1;
 const takeTurns = () => {
   counter++;
@@ -363,10 +403,14 @@ const takeTurns = () => {
 
 //todo snake and ladder logic
 
+//todo how to not overlap dice with board
+//todo how to move the piece after landed on the square
+//todo
+
 //========================MAIN==============================
 const main = () => {
   //= start
-  //showStart();  //! final should showStart
+  //showStart(); //! final should showStart
   showBoard();
   //showEndB();
 
@@ -382,7 +426,7 @@ const main = () => {
   drawNum();
   //= draw snakes and ladders
   drawAllSnakes();
-  //drawAllLadders();
+  drawAllLadders();
 
   //= draw players initial position
   drawPlayer1(0);
@@ -399,7 +443,7 @@ const main = () => {
     drawRect2();
     drawNum();
     drawAllSnakes();
-    //drawAllLadders();
+    drawAllLadders();
 
     //= run players and draw players
     if (counter % 2 === 1) {
