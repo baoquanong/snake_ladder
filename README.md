@@ -11,10 +11,10 @@
 - README.md file with explanations of code
 
 ### Timeframe
-1 month
+  1 month
 
 ### Technologies & Tools Used
-HTML
-CSS
-JavaScript
-Git & GitHub
+  HTML
+  CSS
+  JavaScript
+  Git & GitHub
