@@ -24,7 +24,8 @@
 A ***board game*** in which ***2 players*** take turns to ***throw a dice*** to ***move counters*** along a series of squares. A ***ladder*** provides a short cut to a square nearer the finish and a ***snake*** moves a player to a square further from the ***finish***.
 
 ## Development Milestones
- 1. Draw Game Board
+ 1. Start and End Page
+ 2. Draw Game Board
     - Draw Squares
     - Draw Numbers (index moves in alternate directions at every row)
     - Draw Snakes
