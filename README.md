@@ -43,6 +43,7 @@ A **_board game_** in which **_2 players_** take turns to **_throw a dice_** to 
 ## Development Code Explained
 
 ### Drawing Squares
+![squares](./01_draw squares.png)
 
 ### Drawing Numbers
 
