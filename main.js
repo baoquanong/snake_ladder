@@ -254,11 +254,6 @@ const player1Roll = (num) => {
   );
   console.log("player 2 current index", player2Position);
 
-  //! animation of frames
-  // for  (let i = player1Position - num ; i <= player1Position; i++){
-  //   drawPlayer1(player1Position)
-  // }
-
   if (
     player1Position === 17 ||
     player1Position === 54 ||
@@ -401,17 +396,14 @@ const takeTurns = () => {
   console.log("counter", counter);
 };
 
-//todo snake and ladder logic
-
 //todo how to not overlap dice with board
 //todo how to move the piece after landed on the square
-//todo
 
 //========================MAIN==============================
 const main = () => {
   //= start
-  //showStart(); //! final should showStart
-  showBoard();
+  showStart();
+  //showBoard();
   //showEndB();
 
   //= buttons to next page
@@ -457,5 +449,5 @@ const main = () => {
   });
 };
 
-//======================MAINEND============================
+//======================CALLMAIN============================
 $(main);
