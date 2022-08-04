@@ -34,7 +34,7 @@ A **_board game_** in which **_2 players_** take turns to **_throw a dice_** to 
     - Draw Snakes
     - Draw Ladders
     - Draw Players
-3.  Generate Random Number
+3.  Determine number of moves per turn
 4.  Game mechanics
     - Player Mechanics
     - Snakes and Ladder Mechanics
@@ -42,13 +42,17 @@ A **_board game_** in which **_2 players_** take turns to **_throw a dice_** to 
 
 ## Development Code Explained
 
+### Showing Pages
+
+Setting on-click events to toggle from
+
+- start page to game board
+- game board to end page
+- and from end page to start page
+
 ### Drawing Squares
 
 Each square is 50 X 50 px. There will be 10 X 10 squares to form checkered board with 100 squares.
-
-Line 5-10 used nested for loops to generate 5 rows of 5 squares per row
-
-![drawsquares](./screenshots/01_drawsquares.png)
 
 ### Drawing Numbers
 
@@ -56,10 +60,14 @@ Line 5-10 used nested for loops to generate 5 rows of 5 squares per row
 
 ### Drawing Players
 
-### Generating random numbers
+### Determine number of moves per turn
 
-### Player Mechanics
+Generate a random number from 1 to 6
 
-### Snake and Ladder Mechanics
+### Game Mechanics
+
+![game mechanics](./screenshots/snakeandladder.jpg)
 
 ### Players takes turns
+
+Introducing a counter that counts the button clicks, alternating the players each click.
