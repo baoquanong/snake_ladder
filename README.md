@@ -44,7 +44,11 @@ A **_board game_** in which **_2 players_** take turns to **_throw a dice_** to 
 
 ### Drawing Squares
 
-![squares](./01_drawsquares.png)
+Each square is 50 X 50 px. There will be 10 X 10 squares to form checkered board with 100 squares.
+
+Line 5-10 used nested for loops to generate 5 rows of 5 squares per row
+
+![drawsquares](./screenshots/01_drawsquares.png)
 
 ### Drawing Numbers
 
