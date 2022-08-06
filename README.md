@@ -36,11 +36,12 @@ A **_board game_** in which **_2 players_** take turns to **_throw a dice_** to 
     - Draw Players
 3.  Determine number of moves per turn
 4.  Game mechanics
-    - Player Mechanics
+    - Player position
+    - Player Win condition
     - Snakes and Ladder Mechanics
 5.  Players take turns
 
-## Development Code Explained
+## Development Explained
 
 ### Showing Pages
 
@@ -48,26 +49,26 @@ Setting on-click events to toggle from
 
 - start page to game board
 - game board to end page
-- and from end page to start page
-
-### Drawing Squares
-
-Each square is 50 X 50 px. There will be 10 X 10 squares to form checkered board with 100 squares.
-
-### Drawing Numbers
-
-### Drawing Snakes & Ladders
-
-### Drawing Players
-
-### Determine number of moves per turn
-
-Generate a random number from 1 to 6
+- end page to start page
 
 ### Game Mechanics
 
 ![game mechanics](./screenshots/snakeandladder.jpg)
 
+### Determine number of moves per turn
+
+Generate a random number from 1 to 6
+
+### Drawing Squares
+
+Each square is 50 X 50 px. There will be 10 X 10 squares to form checkered board with 100 squares.
+
 ### Players takes turns
 
 Introducing a counter that counts the button clicks, alternating the players each click.
+
+## Future Development
+
+### Animate Player moves
+
+### Add Rolling Die Graphic
