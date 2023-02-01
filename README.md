@@ -1,8 +1,7 @@
 # A Snake and Ladder Game
 
-## Project
-
 [Go to project!](https://snake-ladder-sigma.vercel.app/)
+# 
 
 ## Project Brief
 
